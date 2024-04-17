@@ -28,7 +28,7 @@ namespace MyATM_App.UI
                 }
                 catch
                 {
-                    Console.WriteLine("Invalid input. Try again.", false);
+                    Utility.PrintMessage("Invalid input. Try again.", false);
                 }
             }
             return default;
