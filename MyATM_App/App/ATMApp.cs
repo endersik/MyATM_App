@@ -1,11 +1,23 @@
 ﻿using MyATM_App.Domain.Entities;
+using MyATM_App.Domain.Interfaces;
+using MyATM_App.UI;
 
 namespace ATMApp
 {
-    public class ATMApp
+    public class ATMApp : IUserLogin
     {
         private List<UserAccounts> userAccountList;
         private UserAccounts selectedAccount;
+
+        public void CheckUserCardNumAndPassword()
+        {
+            bool isCorrectLogin = false;
+
+            UserAccounts tempUserAccount = new UserAccounts();
+
+            tempUserAccount.CardNumber = Validator.Convert<long>("your card number.");
+            tempUserAccount.CardPin = Convert.ToInt32(Utility.GetSecretInput("Enter your card PIN"));
+        }
 
         public void InitializeData()
         {
