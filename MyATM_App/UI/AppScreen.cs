@@ -30,6 +30,13 @@ namespace MyATM_App.UI
             Utility.PrintDotAnimation();
         }
 
+        internal static void PrintLockScreen()
+        {
+            Console.Clear();
+            Utility.PrintMessage("Your account is locked. Please go to the nearest branch" +
+                " to unlock your account. Thank you.", true);
+            Environment.Exit(1);
+        }
     }
 }
 

@@ -14,9 +14,9 @@ namespace ATMApp.App
             AppScreen.Welcome();
 
             ATMApp atmApp = new ATMApp();
+            atmApp.InitializeData();
             atmApp.CheckUserCardNumAndPassword();
-
-            Utility.PressEnterToContinue();
+            atmApp.Welcome();
         }
     }
 }

@@ -12,12 +12,54 @@ namespace ATMApp
         public void CheckUserCardNumAndPassword()
         {
             bool isCorrectLogin = false;
-            UserAccounts inputAccount = AppScreen.UserLoginForm();
+            while (isCorrectLogin == false)
+            {
+                UserAccounts inputAccount = AppScreen.UserLoginForm();
+                AppScreen.LoginProgress();
+                foreach (UserAccounts account in userAccountList)
+                {
+                    selectedAccount = account;
+                    if (inputAccount.CardNumber.Equals(selectedAccount.CardNumber))
+                    {
+                        selectedAccount.TotalLogin++;
 
-            AppScreen.LoginProgress();
+                        if (inputAccount.CardPin.Equals(selectedAccount.CardPin))
+                        {
+                            selectedAccount = account;
+
+                            if (selectedAccount.IsLocked || selectedAccount.TotalLogin > 3)
+                            {
+                                AppScreen.PrintLockScreen();
+                            }
+                            else
+                            {
+                                selectedAccount.TotalLogin = 0;
+                                isCorrectLogin = true;
+                                break;
+                            }
+                        }
+                    }
+                    if (isCorrectLogin == false)
+                    {
+                        Utility.PrintMessage("\nInvalid card number or PIN.", false);
+                        selectedAccount.IsLocked = selectedAccount.TotalLogin == 3;
+                        if (selectedAccount.IsLocked)
+                        {
+                            AppScreen.PrintLockScreen();
+                        }
+                    }
+                    Console.Clear();
+                }
+            }
         }
 
-        
+        public void Welcome()
+        {
+            Console.WriteLine($"Welcome back, {selectedAccount.FullName}");
+            Utility.PressEnterToContinue();
+        }
+
+
 
         public void InitializeData()
         {
