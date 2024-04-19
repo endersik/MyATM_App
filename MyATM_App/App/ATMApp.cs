@@ -12,12 +12,12 @@ namespace ATMApp
         public void CheckUserCardNumAndPassword()
         {
             bool isCorrectLogin = false;
+            UserAccounts inputAccount = AppScreen.UserLoginForm();
 
-            UserAccounts tempUserAccount = new UserAccounts();
-
-            tempUserAccount.CardNumber = Validator.Convert<long>("your card number.");
-            tempUserAccount.CardPin = Convert.ToInt32(Utility.GetSecretInput("Enter your card PIN"));
+            AppScreen.LoginProgress();
         }
+
+        
 
         public void InitializeData()
         {

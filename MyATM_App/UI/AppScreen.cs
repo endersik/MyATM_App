@@ -1,4 +1,6 @@
 ﻿using System;
+using MyATM_App.Domain.Entities;
+
 namespace MyATM_App.UI
 {
 	public static class AppScreen
@@ -12,7 +14,22 @@ namespace MyATM_App.UI
             Utility.PressEnterToContinue();
         }
 
-        
+        internal static UserAccounts UserLoginForm()
+        {
+            UserAccounts tempUserAccount = new UserAccounts();
+
+            tempUserAccount.CardNumber = Validator.Convert<long>("your card number.");
+            tempUserAccount.CardPin = Convert.ToInt32(Utility.GetSecretInput("Enter your card PIN"));
+
+            return tempUserAccount;
+        }
+
+        internal static void LoginProgress()
+        {
+            Console.WriteLine("\nChecking card number and PIN...");
+            Utility.PrintDotAnimation();
+        }
+
     }
 }
 

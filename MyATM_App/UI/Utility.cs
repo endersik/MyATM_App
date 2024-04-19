@@ -54,6 +54,16 @@ namespace MyATM_App.UI
             return Console.ReadLine();
         }
 
+        public static void PrintDotAnimation(int timer = 10)
+        {
+            for (int i = 0; i < timer; i++)
+            {
+                Console.Write(".");
+                Thread.Sleep(200);
+            }
+            Console.Clear();
+        }
+
         public static void PrintMessage(string msg, bool success = true)
         {
             if (success)
